@@ -12,7 +12,7 @@ Stars gathered each day
 * Day 8: :star: :star:
 * Day 9:
 * Day 10: :star:
-* Day 11:
+* Day 11: :star:
 * Day 12:
 * Day 13:
 * Day 14
