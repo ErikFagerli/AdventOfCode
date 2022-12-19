@@ -26,104 +26,107 @@ M7_count = 0
 for i in range(10000):
 
     # Loop through each item in monkey
-    for monkey in range(len(all_monkeys)):
-        if len(all_monkeys[monkey]) == 0:
+    for monkey in all_monkeys:
+        if len(monkey) == 0:
             continue
         #print(all_monkeys[monkey])
-        for item in all_monkeys[monkey]:
+        for item in monkey:
             # Check which monkey is holding item
-            if monkey == 0:
+
+            if monkey == all_monkeys[0]:
                 M0_count += 1
                 item_temp = int(item) * 13
+                item_temp = item_temp % (11 * 7 * 13 * 5 * 3 * 17 * 2 * 19)
                 #item_temp = item_temp // 3
                 if item_temp % 11 == 0:
                     all_monkeys[3].append(item_temp)
-                    
                 else:
-                    all_monkeys[2].append(item_temp)
-                    
 
-            if monkey == 1:
+                    all_monkeys[2].append(item_temp)
+
+            elif monkey == all_monkeys[1]:
                 M1_count += 1
                 item_temp = int(item) + 2
+                item_temp = item_temp % (11 * 7 * 13 * 5 * 3 * 17 * 2 * 19)
                 #item_temp = item_temp // 3
                 if item_temp % 7 == 0:
-                    all_monkeys[6].append(item_temp)
-                    
+                    all_monkeys[6].append(item_temp)   
                 else:
                     all_monkeys[7].append(item_temp)
-                    
 
-            elif monkey == 2:
+
+            elif monkey == all_monkeys[2]:
                 M2_count += 1
                 item_temp = int(item) + 6
+                item_temp = item_temp % (11 * 7 * 13 * 5 * 3 * 17 * 2 * 19)
                 #item_temp = item_temp // 3
                 if item_temp % 13 == 0:
-                    all_monkeys[3].append(item_temp)
-                    
+                    all_monkeys[3].append(item_temp) 
                 else:
                     all_monkeys[5].append(item_temp)
                     
 
-            elif monkey == 3:
+            elif monkey == all_monkeys[3]:
                 M3_count += 1
                 item_temp = int(item) **2
+                item_temp = item_temp % (11 * 7 * 13 * 5 * 3 * 17 * 2 * 19)
                 #item_temp = item_temp // 3
                 if item_temp % 5 == 0:
-                    all_monkeys[4].append(item_temp)
-                    
+                    all_monkeys[4].append(item_temp) 
                 else:
                     all_monkeys[5].append(item_temp)
                     
 
-            elif monkey == 4:
+            elif monkey == all_monkeys[4]:
                 M4_count += 1
                 item_temp = int(item) + 3
+                item_temp = item_temp % (11 * 7 * 13 * 5 * 3 * 17 * 2 * 19)
                 #item_temp = item_temp // 3
                 if item_temp % 3 == 0:
-                    all_monkeys[1].append(item_temp)
-                    
+                    all_monkeys[1].append(item_temp)     
                 else:
                     all_monkeys[7].append(item_temp)
                     
 
-            elif monkey == 5:
+            elif monkey == all_monkeys[5]:
                 M5_count += 1
                 item_temp = int(item) * 7
+                item_temp = item_temp % (11 * 7 * 13 * 5 * 3 * 17 * 2 * 19)
                 #item_temp = item_temp // 3
                 if item_temp % 17 == 0:
-                    all_monkeys[4].append(item_temp)
-                    
+                    all_monkeys[4].append(item_temp)      
                 else:
                     all_monkeys[1].append(item_temp)
                     
 
-            elif monkey == 6:
+            elif monkey == all_monkeys[6]:
                 M6_count += 1
                 item_temp = int(item) + 4
+                item_temp = item_temp % (11 * 7 * 13 * 5 * 3 * 17 * 2 * 19)
                 #item_temp = item_temp // 3
                 if item_temp % 2 == 0:
-                    all_monkeys[2].append(item_temp)
-                    
+                    all_monkeys[2].append(item_temp)  
                 else:
                     all_monkeys[0].append(item_temp)
                     
 
-            elif monkey == 7:
+            elif monkey == all_monkeys[7]:
                 M7_count += 1
                 item_temp = int(item) + 7
+                item_temp = item_temp % (11 * 7 * 13 * 5 * 3 * 17 * 2 * 19)
                 #item_temp = item_temp // 3
                 if item_temp % 19 == 0:
-                    all_monkeys[6].append(item_temp)
-                    
+                    all_monkeys[6].append(item_temp)                   
                 else:
                     all_monkeys[0].append(item_temp)
-        all_monkeys[monkey] = []
-
+        idx = all_monkeys.index(monkey)
+        all_monkeys[idx] = []
+        
+    
+                
 # 121450 is the answer to part 1
 
 count = [M0_count, M1_count, M2_count, M3_count, M4_count, M5_count, M6_count, M7_count]
-
 count.sort()
 monkey_business = count[-2] * count[-1]
 print(monkey_business)
