@@ -7,21 +7,23 @@ def create_lst(textfile):
             line = int(line)
             lst.append(line)
     return lst
-
+key = 811589153
 encrypted = create_lst("text.txt")
 #encrypted = [1, 2, -3, 3, -2, 0, 4]
-encrypted = [(int(x), i) for i, x in enumerate(encrypted)]
+#encrypted = [(int(x), i) for i, x in enumerate(encrypted)]
+encrypted = [(int(x) * key, i) for i, x in enumerate(encrypted)]
 mixed = encrypted.copy()  # copy the encrypted file to a new list for mixing
 
 # mix the file
 print(mixed)
-for x in mixed:
-    if x != 0 or True:
-        old_idx = encrypted.index(x)
-        new_idx = (old_idx + x[0]) % (len(encrypted) - 1)
-        encrypted.pop(old_idx) 
-        encrypted.insert(len(encrypted) if new_idx == 0 else new_idx, x)
-    # print(mixed)
+for _ in range(10):
+    for x in mixed:
+        if x != 0 or True:
+            old_idx = encrypted.index(x)
+            new_idx = (old_idx + x[0]) % (len(encrypted) - 1)
+            encrypted.pop(old_idx) 
+            encrypted.insert(len(encrypted) if new_idx == 0 else new_idx, x)
+        # print(mixed)
 
 print(encrypted)
 start_number = 0
