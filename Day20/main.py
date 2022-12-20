@@ -36,3 +36,4 @@ while counter < start_index[0] + 3000:
         value += encrypted[index][0]
     
 print(value)
+# Answer is 9945
