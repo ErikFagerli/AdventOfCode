@@ -7,8 +7,6 @@ grid = [list(x) for x in open("text.txt").read().strip().split("\n")]
 for r, row in enumerate(grid):
     for c, item in enumerate(row):
         if item == "S":
-            sr = r
-            sc = c
             grid[r][c] = "a"
         if item == "E":
             er = r
@@ -17,10 +15,10 @@ for r, row in enumerate(grid):
 
 # Create a priority que
 q = deque()
-q.append((0, sr, sc))
+q.append((0, er, ec))
 
 # Create visited set 
-vis = {(sr, sc)}
+vis = {(er, ec)}
 
 while q:
     # Get height, row, and column of the position we are at
@@ -34,10 +32,10 @@ while q:
         if (nr, nc) in vis:
             continue
         # Check if neighbour has an higher altitude than 1
-        if ord(grid[nr][nc]) - ord(grid[r][c]) > 1:
+        if ord(grid[nr][nc]) - ord(grid[r][c]) < -1:
             continue
         # Check if the next node is the neigbour. This should only activate when we are at second last node
-        if nr == er and nc == ec:
+        if grid[nr][nc] == "a":
             print(d + 1)
             exit(0)
         # Add the neighbour to the visited set and que
