@@ -10,10 +10,10 @@ Stars gathered each day
 * Day 6: :star: :star:
 * Day 7: :star:
 * Day 8: :star: :star:
-* Day 9:
+* Day 9: :star: :star:
 * Day 10: :star:
 * Day 11: :star: :star:
-* Day 12:
+* Day 12: :star: :star:
 * Day 13:
 * Day 14
 * Day 15
@@ -21,7 +21,7 @@ Stars gathered each day
 * Day 17
 * Day 18 :star:
 * Day 19
-* Day 20
+* Day 20 :star: :star:
 * Day 21
 * Day 22
 * Day 23
