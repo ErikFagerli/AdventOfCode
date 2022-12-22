@@ -1,78 +1,31 @@
-import numpy as np
+v = set([(0, 0)])
 
+H = [0, 0]
+T = [0, 0]
 
-def create_grid(N):
-    """
-    Create a grid containing only zeros.
-    param N: grid size
-    return: grid containing only zeros
-    """
+for line in open("test.txt"):
+    x, y = line.split()
+    y = int(y)
 
-    return np.zeros((N,N))
+    for _ in range(y):
+        dx = 1 if x == "R" else -1 if x == "L" else 0
+        dy = 1 if x == "U" else -1 if x == "D" else 0
 
-def initial_pos(row, col, N):
-    """
-    Set initial posistion to head and tail
-    param x: initial x-position
-    param y: initial y-position
-    """
+        H[0] += dx
+        H[1] += dy
 
-    grid = create_grid(N)
+        _x = H[0] - T[0]
+        _y = H[1] - T[1]
 
-    head = grid[row][col]
-    tail = grid[row][col]
+        if abs(_x) > 1 or abs(_y) > 1:
+            if _x == 0:
+                T[1] += _y // 2
+            elif _y == 0:
+                T[0] += _x // 2
+            else:
+                T[0] += 1 if _x > 0 else -1
+                T[1] += 1 if _y > 0 else -1
 
-    return head, tail
+        v.add(tuple(T))
 
-def update_pos(movement, head, tail):
-    """
-    Update posisition of head and tail
-    param movement: [direction, steps]
-    param head: position to head
-    param tail: posistion to tail
-    """
-
-    direction = movement[0]
-    steps = int(movement[1])
-
-
-
-    match direction:
-        case "D":
-            row = row - int(steps)
-            col = col
-            head = head[row][col]
-        case "U":
-            row = row + int(steps)
-            col = col
-        case "L":
-            row = row
-            col = col - int(steps)
-            head = head[row][col]
-        case "R":
-            row = row
-            col = col - int(steps)
-            head = head[row][col]
-
-    return head
-
-
-
-
-
-
-
-# Open text.txt file and append movement at each step to movement_head
-with open("text.txt", "r") as f:
-    lines = f.readlines()
-
-    # Array containing the direction the head is moving and the number of steps in that direction
-    movement_head = []
-    
-    # Loop through each line and split ut string into action and number of steps
-    for line in lines:
-        action = line.split()
-        movement_head.append(action)
-
-
-
+print(len(v))
