@@ -11,7 +11,7 @@ value_order = {
     "8": 8,
     "9": 9,
     "T": 10,
-    "J": 11,
+    "J": 1,
     "Q": 12,
     "K": 13,
     "A": 14
@@ -26,6 +26,17 @@ for hand, bet in player:
             count[char] += 1
         else:
             count[char] = 1
+    sorted_count = sorted(count, key=count.get, reverse=True)
+    for idx, key in enumerate(sorted_count):
+        if key == "J" and max(count, key=count.get) != "J":
+            count[max(count, key=count.get)] += count["J"]
+            count["J"] = 0
+            break
+        elif key == "J" and len(count) > 1:
+            count[sorted_count[idx+1]] += count["J"]
+            count["J"] = 0
+            break
+
     for value in count.values():
         score += value ** 2
     
@@ -49,7 +60,7 @@ for i in range(0,len(result) - 1):
                     break
 
 tot_score = 0
-
+print(result)
 for i in range(1, len(result) + 1):
     tot_score += i * int(result[i-1][1])
 print(tot_score)
