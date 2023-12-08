@@ -14,20 +14,30 @@ for node in rest:
         # Add key and value to dictionary
         nodes[key] = value
 count = 0
-key = "AAA"
+num_Z = 0
 
-while key != "ZZZ":
+# Find all keys that end with "A"
+next_keys = []
+for keys in nodes:
+    if keys.endswith("A"):
+        next_keys.append(keys)
+
+# Access all the values of the keys that end with "A"
+
+while num_Z != len(next_keys):
     for direction in instructions:
+        # Access all the values of the keys that end with "A"
+        values = [nodes[keys] for keys in next_keys]
+
         if direction == "L":
-            next_key = nodes[key][0]
+            next_keys = [value[0] for value in values]
             count += 1
         else:
-            next_key = nodes[key][1]
+            next_keys = [value[1] for value in values]
             count += 1
-
-        if next_key == "ZZZ":
-            key = next_key
-            break
-        key = next_key
+        num_Z = [key[-1] for key in next_keys].count("Z")
+        if num_Z == len(next_keys):
+            print("All keys end with Z")
+            break    
 print(count)
 
